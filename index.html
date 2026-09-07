@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff8c42" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Mi plan de terapia en casa</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%B8%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="hero">
+        <div class="hero__avatar" id="avatar">🧸</div>
+        <div class="hero__text">
+          <div class="hero__kicker">Plan de terapia en casa</div>
+          <div class="hero__title" id="childName">Nuestro peque</div>
+          <div class="hero__sub" id="childSub">Toca el engranaje para personalizar</div>
+        </div>
+        <button class="hero__gear" id="openSettings" aria-label="Ajustes">⚙️</button>
+      </div>
+
+      <nav class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" data-view="hoy">Hoy</button>
+        <button class="tab" role="tab" aria-selected="false" data-view="semana">Semana</button>
+        <button class="tab" role="tab" aria-selected="false" data-view="actividades">Actividades</button>
+        <button class="tab" role="tab" aria-selected="false" data-view="tips">Guía</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="view is-active" id="view-hoy" role="tabpanel">
+        <div class="progress-card">
+          <svg class="ring" viewBox="0 0 36 36" aria-hidden="true">
+            <circle class="ring__track" cx="18" cy="18" r="15.9" fill="none" stroke-width="3.4" />
+            <circle class="ring__fill" id="ringFill" cx="18" cy="18" r="15.9" fill="none" stroke-width="3.4"
+                    stroke-dasharray="100 100" stroke-dashoffset="100" transform="rotate(-90 18 18)" />
+            <text class="ring__label" id="ringLabel" x="18" y="19" text-anchor="middle">0/0</text>
+          </svg>
+          <div class="progress-card__text">
+            <strong id="todayHeadline">¡A jugar!</strong>
+            <span id="todayName"></span>
+          </div>
+        </div>
+
+        <div class="section-title">
+          <h2>Actividades de hoy</h2>
+          <span id="todayHint"></span>
+        </div>
+        <div id="todayList"></div>
+      </section>
+
+      <section class="view" id="view-semana" role="tabpanel">
+        <div class="section-title">
+          <h2>Plan de la semana</h2>
+          <span class="editable-hint">✏️ modo edición activo</span>
+        </div>
+        <div id="weekList"></div>
+      </section>
+
+      <section class="view" id="view-actividades" role="tabpanel">
+        <div class="section-title">
+          <h2>Todas las actividades</h2>
+          <span id="actCount"></span>
+        </div>
+        <div class="cat-filters" id="catFilters"></div>
+        <div class="cat-note" id="catNote" hidden></div>
+        <div id="catList"></div>
+      </section>
+
+      <section class="view" id="view-tips" role="tabpanel">
+        <div class="section-title"><h2>Cómo acompañarlo</h2></div>
+        <ul class="tips-list" id="tipsList"></ul>
+        <p class="disclaimer">
+          Este plan es una guía de apoyo para casa basada en el enfoque de integración
+          sensorial. No sustituye la terapia ocupacional ni las indicaciones de la
+          profesional. Ante cualquier duda, consulta con la terapeuta.
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <button class="fab" id="editToggle">✏️ <span id="editToggleText">Editar</span></button>
+
+  <div class="editbar">
+    <div class="editbar__inner">
+      <button id="editAddActivity">＋ Nueva actividad</button>
+      <button id="editResetSchedule">↺ Plan por defecto</button>
+      <button class="primary" id="editDone">✓ Listo</button>
+    </div>
+  </div>
+
+  <!-- Modal genérico -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" id="modalBox" role="dialog" aria-modal="true"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
