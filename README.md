@@ -39,8 +39,15 @@ Menú **⚙️**: nombre y foto del niño, exportar/importar, restaurar, borrar 
 | `styles.css` | Estilos |
 | `app.js` | Lógica (estado en `localStorage`) |
 | `data.js` | Contenido por defecto de las actividades y del plan semanal |
+| `illustrations.js` | Mapeo actividad → íconos |
+| `assets/openmoji/` | Íconos SVG (OpenMoji) |
 
 Sin dependencias ni build. Se publica con GitHub Pages desde la rama `main`.
+
+## Créditos
+
+Íconos: [OpenMoji](https://openmoji.org) — el proyecto open source de emojis.
+Licencia [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
 ## Aviso
 

@@ -209,11 +209,69 @@ img { max-width: 100%; display: block; }
   border-left: 7px solid var(--cat);
 }
 
+.card__illo { padding: 12px 12px 0; }
+.card.is-done .card__illo { opacity: 0.6; }
+
+.illo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 132px;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 30% 25%, color-mix(in srgb, var(--cat, #ff8c42) 16%, #fff) 0%, transparent 60%),
+    linear-gradient(135deg, #f4f6fa, #eef1f6);
+  overflow: hidden;
+}
+.illo::after {
+  content: "";
+  position: absolute;
+  right: -30px;
+  bottom: -34px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--cat, #ff8c42) 12%, transparent);
+}
+.illo__main {
+  position: relative;
+  z-index: 1;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 5px rgba(60, 45, 25, 0.14));
+}
+.illo__extra {
+  position: absolute;
+  z-index: 2;
+  right: 20px;
+  top: 14px;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(60, 45, 25, 0.18));
+}
+
+.modal__illo .illo { height: 148px; margin-bottom: 14px; }
+.modal__illo .illo__main { width: 104px; height: 104px; }
+.modal__illo .illo__extra { width: 46px; height: 46px; }
+
+.mini__thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--cat, #ff8c42) 15%, #fff);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.mini__thumb img { width: 28px; height: 28px; object-fit: contain; }
+
 .card__head {
   display: flex;
   align-items: center;
   gap: 13px;
-  padding: 14px 16px;
+  padding: 12px 16px 14px;
   width: 100%;
   background: transparent;
   border: none;
@@ -231,6 +289,7 @@ img { max-width: 100%; display: block; }
   font-size: 26px;
   flex-shrink: 0;
 }
+.card__icon img { width: 32px; height: 32px; object-fit: contain; }
 
 .card__headtext { flex: 1; min-width: 0; }
 .card__title { font-size: 16px; font-weight: 800; font-family: var(--font-round); }
@@ -536,6 +595,7 @@ body.editing .editable-hint { display: inline; }
   margin: auto;
   animation: rise 0.2s ease both;
 }
+.modal__illo svg { display: block; width: 100%; height: auto; border-radius: 16px; margin-bottom: 14px; }
 .modal h3 { font-size: 20px; margin-bottom: 4px; }
 .modal p.sub { font-size: 13px; color: var(--ink-soft); margin: 0 0 16px; }
 .modal label { display: block; font-size: 13px; font-weight: 800; margin: 12px 0 4px; }
@@ -588,12 +648,14 @@ body.editing .editable-hint { display: inline; }
 .tips-list li::before { content: "💡"; flex-shrink: 0; }
 
 .disclaimer {
-  margin-top: 26px;
+  margin-top: 16px;
   font-size: 12px;
   color: var(--ink-soft);
   text-align: center;
   padding: 0 10px;
 }
+.disclaimer:first-of-type { margin-top: 26px; }
+.disclaimer a { color: inherit; }
 
 .empty {
   text-align: center;

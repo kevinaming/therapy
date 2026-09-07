@@ -63,6 +63,10 @@
     return base;
   }
 
+  function illoFor(act) {
+    return (typeof window.buildIllo === "function") ? window.buildIllo(act) : "";
+  }
+
   function activityById(id) {
     for (var i = 0; i < state.activities.length; i++) {
       if (state.activities[i].id === id) return state.activities[i];
@@ -125,10 +129,22 @@
     if (isDone(act.id)) card.classList.add("is-done");
     card.dataset.id = act.id;
 
+    if (opts.illo !== false) {
+      var art = illoFor(act);
+      if (art) {
+        var illo = el("div", "card__illo");
+        illo.innerHTML = art;
+        card.appendChild(illo);
+      }
+    }
+
     var head = el("button", "card__head");
     head.type = "button";
+    var iconSrc = window.illoMainSrc ? window.illoMainSrc(act) : "";
     head.innerHTML =
-      '<span class="card__icon">' + (act.icon || cat.icon) + '</span>' +
+      '<span class="card__icon">' +
+        (iconSrc ? '<img alt="" src="' + iconSrc + '">' : (act.icon || cat.icon)) +
+      '</span>' +
       '<span class="card__headtext">' +
         '<span class="card__title"></span>' +
         '<span class="card__meta">' +
@@ -293,7 +309,16 @@
         if (day.id === today && isDone(id)) m.classList.add("is-done");
         m.style.setProperty("--cat", cat.color);
 
-        m.appendChild(el("span", "mini__icon", act.icon || cat.icon));
+        var src = window.illoMainSrc ? window.illoMainSrc(act) : "";
+        if (src) {
+          var thumb = el("span", "mini__thumb");
+          var timg = new Image();
+          timg.src = src; timg.alt = "";
+          thumb.appendChild(timg);
+          m.appendChild(thumb);
+        } else {
+          m.appendChild(el("span", "mini__icon", act.icon || cat.icon));
+        }
         var t = el("span", "mini__title", act.title);
         m.appendChild(t);
 
@@ -533,7 +558,9 @@
     var act = activityById(actId);
     if (!act) return;
     var cat = categoryById(act.category);
+    var art = illoFor(act);
     var html =
+      (art ? '<div class="modal__illo">' + art + '</div>' : '') +
       '<h3>' + (act.icon || cat.icon) + " " + esc(act.title) + '</h3>' +
       '<p class="sub">' + cat.icon + " " + esc(cat.label) + (act.duration ? " · ⏱ " + esc(act.duration) : "") + '</p>' +
       '<div class="card__section"><h4>Materiales</h4><ul>' +
